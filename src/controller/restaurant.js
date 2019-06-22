@@ -39,17 +39,35 @@ api.get('/:id', (req, res)=>{
       if(err){
         res.send(err);
       }
-      res.json();
+      res.json(restaurant);
   });
 });
 
 
 
-  // update
-
+  // update    '/v1/restaurant/:id'- update
+api.put('/:id', (req, res)=>{
+  Restaurant.findById(req.params.id, (err, restaurant)=>{
+    if(err){
+      res.send(err);
+    }
+    restaurant.name = req.body.name;
+    restaurant.save(err =>{
+      if(err){
+        res.send(err);
+      }
+      res.json({message: "Restaurant info updated"});
+    });
+  });
+});
 
 
   //delete
+
+
+
+
+
 
   return api;
 }
