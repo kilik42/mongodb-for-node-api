@@ -30,8 +30,19 @@ export default({config, db}) => {
         res.send(err);
       }
       res.json(restaurants);
-    })
-  })
+    });
+  });
+
+// '/v1/restaurant/:id' -Read 1
+api.get('/:id', (req, res)=>{
+  Restaurants.findById(req.params.id, (err, restaurant)=>{
+      if(err){
+        res.send(err);
+      }
+      res.json();
+  });
+});
+
 
 
   // update
